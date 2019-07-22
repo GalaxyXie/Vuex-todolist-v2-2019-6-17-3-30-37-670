@@ -3,13 +3,13 @@
         <div>
         <ul id="filters">
           <li>
-            <a  data-filter="all"  @click="showAll">ALL</a>
+            <a  data-filter="all" @click="showAll">ALL</a>
           </li> 
           <li>
-            <a data-filter="active"  @click="showChecked">Active</a>
+            <a data-filter="active" @click="showActive">Active</a>
           </li>
           <li>
-            <a data-filter="complete" @click="showNotChecked">Complete</a>
+            <a data-filter="complete" @click="showComplete">Complete</a>
           </li>
         </ul>
       </div>
@@ -17,7 +17,21 @@
 </template>
 <script>
 export default {
-  name: "footer",
+  name: "Footer",
+  methods:{
+     showAll() {
+       this.$store.state.condition=1;
+       this.$store.commit('filterItem');
+    },
+    showActive(){
+      this.$store.state.condition=2;
+       this.$store.commit('filterItem');
+    },
+    showComplete(){
+      this.$store.state.condition=3;
+       this.$store.commit('filterItem');
+    },
+  }
 }
   
 </script>

@@ -7,21 +7,20 @@ const store = new Vuex.Store({
         itemsShow:[],
         condition:1,
     },
-   mutation:{
+   mutations:{
        filterItem(state){
         state.itemsShow=state.itemsAll.filter((item) => {
-                if (state.condition === 1) {
+                if (state.condition == 1) {
                   return item
-                } else if (state.condition === 2) {
+                } else if (state.condition == 2) {
                   return !item.isChecked
-                } else if (state.condition === 3) {
+                } else if (state.condition == 3) {
                   return item.isChecked
                 }
               })
        },
-       add(state,stringcontent,isChecked,isEdit){
-        state.$store.state.itemsAll.push({stringcontent:stringcontent,isChecked:isChecked,isEdit:isEdit,condition:state.condition});
-       
+       add(state,item){
+        state.itemsAll.push(item );   
        }
    }
   })
