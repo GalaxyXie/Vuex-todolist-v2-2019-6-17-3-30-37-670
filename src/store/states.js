@@ -1,3 +1,0 @@
-state: {
-    count: 0
-  }

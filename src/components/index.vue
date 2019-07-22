@@ -1,87 +1,68 @@
 <template>
   <div class="index">
     <div class="container">
-      <div>
-        <h2>Jquery To Do List</h2>
-        <p>
-          <em>Simple Todo List with adding and filter by diff status.</em>
-        </p> 
-      </div>
-      <div>
+      <Header/>
+       <div>
         <input class="input-text" type="text" v-model="checkString" />
-        <div id="button" @click="add">Add</div>
+        <div id="button" @click="addItem">Add</div>
       </div>
       <br />
-      <Content  @editable="editable" />
-      <div>
-        <ul id="filters">
-          <li>
-            <a  data-filter="all"  @click="showAll">ALL</a>
-          </li> 
-          <li>
-            <a data-filter="active"  @click="showChecked">Active</a>
-          </li>
-          <li>
-            <a data-filter="complete" @click="showNotChecked">Complete</a>
-          </li>
-        </ul>
-      </div>
+      <Content :items="items" />
+
+        <Footer/>
+
     </div>
   </div>
 </template>
 
 <script>
-import Content from "./content";
+import Content from "./content"
+import Header from "./header"
+import Footer from "./footer"
 export default {
   name: "index",
   components: {
       Content,
+      Header,
+      Footer,
   },
   data() {
     return {
       checkString: "",
+      items: [],
       itemsCopy:[],
       condition: 1
     };
   },
   methods: {
-    add() {   
-      this.itemsCopy.push({stringcontent:this.checkString,isChecked:false,isEdit:false});
-      this.$store.state.items = this.itemsCopy.filter((item) => {
-        if (this.condition === 1) {
-          return item
-        } else if (this.condition === 2) {
-          return !item.isChecked
-        } else if (this.condition === 3) {
-          return item.isChecked
-        }
-      })
-      //this.items.push({stringcontent:this.checkString,isChecked:false,isEdit:false});
-      this.checkString= "";
+    addItem(){
+      this.$store.commit('add',this.checkString,this.isChecked,this.isEdit);
+
+      alert(this.$store.state.itemsAll[0].checkString);
+      this.$store.commit('filterItem');
     },
     showAll() {
       this.condition = 1;
-      this.$store.state.items=this.itemsCopy;
+      this.items=this.itemsCopy;
     },
     showChecked(){
       this.condition = 2;
-      this.$store.state.items=null;
-      this.$store.state.items=this.itemsCopy.filter(item=>item.isChecked==false);
+      this.items=null;
+      this.items=this.itemsCopy.filter(item=>item.isChecked==false);
       this.checkString= "";
     },
     showNotChecked(){
       this.condition = 3;
-      this.$store.state.items=null;
-      this.$store.state.items=this.itemsCopy.filter(item=>item.isChecked==true);
+      this.items=null;
+      this.items=this.itemsCopy.filter(item=>item.isChecked==true);
       this.checkString= "";
     },
     editable(index){
-      //alert("hi");
-      //this.$set(this.items[index],isEdit,true);
-     this.$store.state.items[index].isEdit=true; 
+       alert(index);
+      this.items[index].isEdit = true;
     },
     input(index){
-      this.$store.state.items[index].isEdit=false; 
+      this.items[index].isEdit=false; 
     } 
   }
 };
