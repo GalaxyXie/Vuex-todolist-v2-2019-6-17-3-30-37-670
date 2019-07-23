@@ -27,7 +27,27 @@ getItem({commit}){
     console.log(response.config);
     commit('getItems',response.data);
   });
-  }
-
+  },
+update({commit},item){
+    axios.put('http://localhost:3001/todos/'+item.id, item)
+    .then(function (response) {
+      commit('update',item);
+      console.log(response);
+      
+    })
+    .catch(function (error) {
+      console.log(error);
+    });  
+  },
+ delete({dispatch,commit},itemId){
+    axios.delete('http://localhost:3001/todos/'+itemId)
+    .then(function (response) {
+      commit('delete',itemId);
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });  
+  },
 }
 export default actions

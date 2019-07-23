@@ -11,12 +11,20 @@ const mutations={
            })
     },
     add(state,item){    
-     state.itemsAll.push(item );   
+     state.itemsAll.push(item ); 
+     state.itemsShow.push(item );     
     },
+    update(state,item){    
+      state.itemsAll.map(itemInit=>itemInit.id==item.id?item:itemInit);
+      state.itemsAll.map(itemInit=>itemInit.id==item.id?item:itemInit);
+     },
     getItems(state,items){
         state.itemsAll.push(...items);
         state.itemsShow.push(...items);
     },
-   
+    
+    delete(state,itemId){    
+      state.itemsAll.splice(itemId,1);
+     },
 }
 export default mutations

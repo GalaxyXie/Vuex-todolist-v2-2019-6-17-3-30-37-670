@@ -2,7 +2,7 @@
   <div>
     <ol>
       <li
-        v-for="item in  itemsShow"
+        v-for="(item, index) in  itemsShow"
         v-bind:key="item.key"
         v-bind:class="{ checked: item.isChecked }"
       >
@@ -10,9 +10,10 @@
         <span
           @dblclick="editable=true"
           :contenteditable="editable"
-          @keydown="updatable"
+          @keydown.enter="updatable(item, index)"
           ref="info"
         >{{item.checkString}}</span>
+        <button @click="deleteItem(item)">delete</button>
       </li>
     </ol>
   </div>
@@ -33,12 +34,30 @@ export default {
     };
   },
   methods: {
-    updatable() {
-      if (event.keyCode == 13) {
-        this.editable = false;
-        this.item.checkString = this.$refs.info.innerHTML;
-      }
+    updatable(item, index) {
+        this.editable = false; 
+        //  console.log(this.$refs.info.innerHTML);
+         console.log(this.$refs.info[index].innerHTML);
+        item.checkString = this.$refs.info[index].innerHTML;
+        console.log(item.id);
+         let itemNow={id:item.id,checkString:item.checkString,isChecked:false};
+         // consoles.log(2+this.item.checkString);
+         this.$store.dispatch("update",itemNow);
+      
     },
+    deleteItem(item){
+        console.log(item.id);
+         // consoles.log(2+this.item.checkString);
+         this.$store.dispatch("delete",item.id);
+
+         this.$store.commit('filterItem');
+    }
   }
 };
 </script>
+<style  scoped>
+button{
+  float: right;
+}
+</style>
+

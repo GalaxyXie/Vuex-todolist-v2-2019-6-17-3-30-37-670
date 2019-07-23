@@ -8,16 +8,15 @@
       </div>
       <br />
       <v-content />
-
-        <v-footer/>
+      <v-footer/>
 
     </div>
   </div>
 </template>
 
 <script>
-import Content from "./content.vue"
-import Top from "./Top.vue"
+import Content from "./Content"
+import Top from "./Top"
 import Bottom from "./Bottom.vue"
 export default {
   name: "index",
@@ -36,9 +35,9 @@ export default {
     addItem(){
       let condition=this.$store.state.condition;
       console.log( condition);
-      let item={checkString:this.checkString,isChecked:false,condition:1};
+      let item={checkString:this.checkString,isChecked:false};
       this.$store.dispatch('add',item);
-      // alert(this.$store.itemsAll[0].stringcontent);
+      
       this.$store.commit('filterItem');
     }
   },

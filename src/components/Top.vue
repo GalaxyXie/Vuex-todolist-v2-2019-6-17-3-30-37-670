@@ -13,16 +13,9 @@
 
 export default {
   name: "Top",
-  data() {
-    return {
-      checkString: "",
-      items: [],
-      itemsCopy:[],
-      condition: 1
-    };
-  },
-  method:{
-   
-  }
 }
 </script>
+<style scoped>
+
+
+</style>
