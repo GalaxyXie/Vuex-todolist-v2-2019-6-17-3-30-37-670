@@ -17,14 +17,14 @@
 
 <script>
 import Content from "./content.vue"
-import Header from "./Header.vue"
-import Footer from "./Footer.vue"
+import Top from "./Top.vue"
+import Bottom from "./Bottom.vue"
 export default {
   name: "index",
   components: {
       "v-content": Content,
-      "v-header": Header,
-      "v-footer": Footer,
+      "v-header": Top,
+      "v-footer": Bottom,
   },
   data() {
     return {
@@ -34,14 +34,16 @@ export default {
   },
   methods: {
     addItem(){
-      let condition=this.$store.state.condition
-      let item={checkString:this.checkString,isChecked:false,condition};
-      this.$store.commit('add',item);
+      let condition=this.$store.state.condition;
+      console.log( condition);
+      let item={checkString:this.checkString,isChecked:false,condition:1};
+      this.$store.dispatch('add',item);
       // alert(this.$store.itemsAll[0].stringcontent);
       this.$store.commit('filterItem');
-    },
-   
-   
+    }
+  },
+  mounted() {
+      this.$store.dispatch("getItem");
   }
 };
 </script>

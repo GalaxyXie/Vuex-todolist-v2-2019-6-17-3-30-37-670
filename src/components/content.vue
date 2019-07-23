@@ -24,6 +24,7 @@ export default {
   computed: {
     itemsShow() {
       return this.$store.state.itemsShow;
+      
     }
   },
   data() {
@@ -37,7 +38,7 @@ export default {
         this.editable = false;
         this.item.checkString = this.$refs.info.innerHTML;
       }
-    }
+    },
   }
 };
 </script>
