@@ -16,17 +16,17 @@
 			</a>
 		</li>
 		
-		<li class="first">
+		<li class="first"  @click="turntoMypage">
 			<div class="d-firstNav s-firstNav clearfix">
 				<i class="fa fa-bars"></i>
 				<span>我的</span>
 				<i class="fa fa-caret-right fr "></i>
 			</div>
 		</li>
-		<li class="first">
+		<li class="first"  @click="turnToIndex">
 			<div class="d-firstNav s-firstNav">
 				<i class="fa fa-bars"></i>	                    
-				<span>TodoList列表</span>
+				<span >TodoList列表</span>
 				<i class="fa fa-caret-right fr" ></i>
 			</div>
 		</li>
@@ -62,14 +62,17 @@ export default {
         returnMain(){
              var msg = "back?";
             if (confirm(msg)==true){
-                this.$router.push({ name: 'main', }) ;// -> /user/123
+                this.$router.push({ name: 'main', }) ;
 			    return true;  
 		    }else{
 			    return false;
 		    }
         },
          turnToIndex(){
-            this.$router.push({ path: 'index', }) ;// -> /user/123 	    
+            this.$router.push({ path: 'index', }) ;   
+        },
+        turntoMypage(){
+             this.$router.push({ path: 'mypage', }) ;
         }
     },
     mounted() {
