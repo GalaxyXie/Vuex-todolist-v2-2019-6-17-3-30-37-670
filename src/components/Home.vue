@@ -32,25 +32,18 @@
 		</li>
 	</ul>
 </div>
-  <index/>
+  <router-view/>
 </body>
    
     </div>
 </template>
 <script>
 import index from "./index";
-import Content from "./Content"
-import Top from "./Top"
-import Bottom from "./Bottom"
+
 export default {
     
    components: {
       "index": index,
-       
-     "v-content": Content,
-      "v-header": Top,
-      "v-footer": Bottom,
-  
   },
 
      computed: {
@@ -60,25 +53,23 @@ export default {
     },
     methods:{
         returnMain(){
-             var msg = "back?";
-            if (confirm(msg)==true){
                 this.$router.push({ name: 'main', }) ;
-			    return true;  
-		    }else{
-			    return false;
-		    }
         },
          turnToIndex(){
-            this.$router.push({ path: 'index', }) ;   
+            this.$router.push({ name: 'index', }) ;   
         },
         turntoMypage(){
-             this.$router.push({ path: 'mypage', }) ;
+             this.$router.push({ name: 'mypage', }) ;
         }
     },
-    mounted() {
-        console.log(this.$route)
+    beforeRouteLeave (to, from , next) { 
+        const answer = window.confirm('Do you really want to leave? ')
+        if (answer) {
+            next()
+        } else {
+            next(false)
+        }
     }
-    
 
 }
 </script>

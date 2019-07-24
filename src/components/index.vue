@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import Content from "./Content"
+import TodoList from "./TodoList"
 import Top from "./Top"
 import Bottom from "./Bottom.vue"
 export default {
   name: "index",
   components: {
-      "v-content": Content,
+      "v-content": TodoList,
       "v-header": Top,
       "v-footer": Bottom,
   },
@@ -33,17 +33,13 @@ export default {
   },
   methods: {
     addItem(){
-      let condition=this.$store.state.condition;
-      console.log( condition);
+
       let item={checkString:this.checkString,isChecked:false};
       this.$store.dispatch('add',item);
-      
-      this.$store.commit('filterItem');
+      this.$store.dispatch("getItem");    
     }
   },
-  mounted() {
-      this.$store.dispatch("getItem");
-  }
+
 };
 </script>
 

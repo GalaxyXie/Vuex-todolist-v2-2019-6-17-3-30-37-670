@@ -10,20 +10,21 @@ const mutations={
              }
            })
     },
-    add(state,item){    
+    add(state,item){      
      state.itemsAll.push(item ); 
      state.itemsShow.push(item );     
     },
     update(state,item){    
       state.itemsAll.map(itemInit=>itemInit.id==item.id?item:itemInit);
-      state.itemsAll.map(itemInit=>itemInit.id==item.id?item:itemInit);
+      state.itemsShow.map(itemInit=>itemInit.id==item.id?item:itemInit);
      },
     getItems(state,items){
-        state.itemsAll.push(...items);
-        state.itemsShow.push(...items);
+        state.itemsAll=items;
+        state.itemsShow=items;
+        
     },
     
-    delete(state,itemId){    
+    delete(state,itemId){  
       state.itemsAll.splice(itemId,1);
      },
 }

@@ -12,6 +12,9 @@ export default {
   name: 'app',
   components: {
     index
+  },
+   mounted() {
+      this.$store.dispatch("getItem");
   }
 }
 </script>

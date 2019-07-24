@@ -2,7 +2,7 @@
     <div>
     <header class="white-text-container section-container">
     <div class="text-center">
-      <h1>I am David Folley</h1>
+      <h1>I am Laura</h1>
       <p>Web designer</p>
       <p>
         <a class="fa-icon fa-icon-2x" href="#" title="">

@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     turnPage(){
-      this.$router.push({ name: 'home', params: { username:this.username }}) ;// -> /user/123
+      this.$router.push({ path: '/home', params: { username:this.username }}) ;// -> /user/123
     }
   },
 

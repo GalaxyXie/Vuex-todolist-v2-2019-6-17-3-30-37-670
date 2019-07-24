@@ -9,7 +9,7 @@ add({commit},item){
   axios.post('http://localhost:3001/todos', item)
   .then(function (response) {
     commit('add',item);
-    console.log(response);
+  
   })
   .catch(function (error) {
     console.log(error);
@@ -22,9 +22,6 @@ getItem({commit}){
          
     console.log(response.data);
     console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.headers);
-    console.log(response.config);
     commit('getItems',response.data);
   });
   },

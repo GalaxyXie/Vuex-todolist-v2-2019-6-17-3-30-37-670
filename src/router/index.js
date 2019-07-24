@@ -6,14 +6,25 @@ import MyPage from '../components/MyPage'
 import Vue from 'vue'
 Vue.use(VueRouter)
 
-    
+
 const routes = [
-  { path: '/index', component: index },
-  { path: '/', name: 'main',component: Main },
-  { path: '/home', name: 'home', component: Home },
-  { path: '/mypage',name:'MyPage', component: MyPage },
+  {
+    path: '/home', component: Home,
+    children: [
+      { 
+        path: '/home/index', component: index ,name:'index'
+      },
+      {
+        path: '/home/mypage',
+        component: MyPage ,name:'mypage'
+      },
+      
+    ]
+  },
+ 
+  { path: '/', name: 'main', component: Main },
 ],
-router = new VueRouter({
-  routes // (缩写) 相当于 routes: routes
-})
+  router = new VueRouter({
+    routes // (缩写) 相当于 routes: routes
+  })
 export default router
