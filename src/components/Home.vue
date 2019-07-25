@@ -1,5 +1,21 @@
 <template>
-    <div>
+<el-container>
+    <el-header>
+        <el-button type="primary" @click="returnMain">back</el-button>   
+        <span class="username">hi,{{$route.params.username}}</span>    
+    </el-header>
+    <el-container>
+  <el-aside width="200px">
+      <el-menu>  
+        <el-menu-item index="1-1" @click="turntoMypage">我的</el-menu-item>
+        <el-menu-item index="1-2" @click="turnToIndex">TodoList列表</el-menu-item>
+    </el-menu>
+  </el-aside>
+  
+    <el-main><router-view/> </el-main>
+  </el-container>
+</el-container>
+    <!-- <div>
         <div class="header">
         <input type="button" @click="returnMain" value="back"/>
         <span class="username">hi,{{$route.params.username}}</span>
@@ -8,7 +24,7 @@
 <body>
 <div class="s-side">
 	<ul>
-		<!--这部分是导航栏信息。-->
+		
 		<li class="s-firstItem first">
 			<a href="#">
 				<i class="fa fa-home"></i>
@@ -35,7 +51,7 @@
   <router-view/>
 </body>
    
-    </div>
+    </div> -->
 </template>
 <script>
 import index from "./index";
@@ -74,22 +90,6 @@ export default {
 }
 </script>
 <style scoped>
- @import url("../css/todo.css"); 
- @import url("../css/index.css"); 
-.username{
-    right: 0;
-    top: 0;
-    float: right;
-}
-button{
-    text-align: center;
-}
-.header{
-    background-color: lightcoral;
-    height: 30px;
-}
-.s-side{
-    margin-top:30px; 
-}
+
 
 </style>

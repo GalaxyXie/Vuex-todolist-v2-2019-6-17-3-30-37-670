@@ -2,11 +2,8 @@
     <div>
         <div>
         <h2>hello,Welcome to here</h2>
-        <input type="text" placeholder="please enter name" v-model="username"/>
-       <button @click="turnPage">
-            开始使用
-       </button>
-        
+        <el-input class="username" placeholder="please enter name" v-model="username"></el-input>
+         <el-button type="primary" @click="turnPage">开始使用</el-button>
       </div>
      
     </div>
@@ -30,3 +27,8 @@ export default {
 
 }
 </script>
+<style>
+.username{
+  width: 20%;
+}
+</style>
